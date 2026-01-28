@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- Material Symbols for icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,dark_mode,delete,filter_alt,light_mode,replay" />
+    <script src="script.js" defer></script>
+    <title>壽司郎：估下食咗幾多錢</title>
+</head>
+<body>
+    <div class="heading">
+        <div class="heading-text">
+            <h1>壽司郎：估下食咗幾多錢</h1>
+            <p>估下你個 friend 唔同顏色既碟分別食咗幾多。</p>
+        </div>
+        <button id="theme-toggle" aria-label="切換深色/淺色模式">
+            <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+    </div>
+
+    <div class="main">
+        <div class="bill">
+            <b>未收加一服務費總數</b> <span>$</span>
+            <input type="number" class="before-service-fee" id="before-service-fee" min="0" step="1"></input>
+            <br>
+            <b>已收加一服務費總數</b> <span>$</span>
+            <input type="number" class="after-service-fee" id="after-service-fee" min="0" step="1"></input>
+        </div>
+
+        <div class="plates">
+            <div class="ordinary">
+                <div class="white">
+                    <input type="checkbox" name="white-plate" id="white-plate">
+                    <label for="white-plate" style="background-color: #eee; color: #000;">白碟 $10</label>
+                </div>
+                <div class="red">
+                    <input type="checkbox" name="red-plate" id="red-plate" checked>
+                    <label for="red-plate" style="background-color: #842834; color: #fff;">紅碟 $12</label>
+                </div>
+                <div class="silver">
+                    <input type="checkbox" name="silver-plate" id="silver-plate" checked>
+                    <label for="silver-plate" style="background-color: #d2d2d2; color: #000;">銀碟 $17</label>
+                </div>
+                <div class="gold">
+                    <input type="checkbox" name="gold-plate" id="gold-plate" checked>
+                    <label for="gold-plate" style="background-color: #e2b558; color: #000;">金碟 $22</label>
+                </div>
+                <div class="black">
+                    <input type="checkbox" name="black-plate" id="black-plate" checked>
+                    <label for="black-plate" style="background-color: #000; color: #fff;">黑碟 $27</label>
+                </div>
+            </div>
+            <button id="calculate-button" class="btn-primary">計算</button>
+        </div>
+
+        <div class="special" id="special-section">
+            <div class="special-header">
+                <b>特別碟／額外項目</b>
+                <button type="button" id="add-special" class="btn-primary" aria-label="新增特別項目">
+                    <span class="material-symbols-outlined">add</span>
+                    新增
+                </button>
+                <small id="special-summary"></small>
+            </div>
+            <div id="special-list"></div>
+        </div>
+
+        <div class="result">
+            <div class="output" id="output">
+                <div class="result-controls">
+                    <button id="filter-button" type="button" class="btn-primary" aria-label="顯示/隱藏篩選">
+                        <span class="material-symbols-outlined">filter_alt</span>
+                        篩選
+                    </button>
+                </div>
+                <div id="filter-panel" class="filter-panel" hidden></div>
+                <table id="result-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" id="th-combination">組合</th>
+                            <th colspan="4" id="th-plates">數量</th>
+                        </tr>
+                        <tr>
+                            <th class="th-white" id="th-white" hidden>白（$10）</th>
+                            <th class="th-red" id="th-red">紅（$12）</th>
+                            <th class="th-silver" id="th-silver">銀（$17）</th>
+                            <th class="th-gold" id="th-gold">金（$22）</th>
+                            <th class="th-black" id="th-black">黑（$27）</th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        <!-- Results will be populated here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="foot">
+        商標版權歸香港壽司郎所有。本工具僅供娛樂用途，與壽司郎無任何關係。最後更新：2026-01-28
+    </div>
+</body>
+</html>

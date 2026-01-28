@@ -1,0 +1,455 @@
+/* Theme variables */
+:root {
+	--bg: #f8fafc; /* slate-50 */
+	--text: #1f2937; /* gray-800 */
+	--muted: #6b7280; /* gray-500 */
+	--card-bg: #ffffff;
+	--border: #e5e7eb; /* gray-200 */
+	--table-header-bg: #f3f4f6; /* gray-100 */
+	--table-header-text: #374151; /* gray-700 */
+	--zebra: #fafafa;
+	--input-bg: #ffffff;
+	--primary: #2563eb; /* blue-600 */
+	--primary-hover: #1d4ed8; /* blue-700 */
+	--danger: #ef4444; /* red-500 */
+	--accent: #2563eb; /* checkbox color */
+	--toggle-bg: #e5e7eb; /* slightly darker than light card */
+	--toggle-hover: #d1d5db;
+}
+
+body.dark {
+	--bg: #0f172a; /* slate-900 */
+	--text: #e5e7eb; /* gray-200 */
+	--muted: #9ca3af; /* gray-400 */
+	--card-bg: #111827; /* gray-900 */
+	--border: #374151; /* gray-700 */
+	--table-header-bg: #1f2937; /* gray-800 */
+	--table-header-text: #e5e7eb; /* gray-200 */
+	--zebra: #0b1220; /* slightly darker than card */
+	--input-bg: #111827;
+	--primary: #2563eb;
+	--primary-hover: #1d4ed8;
+	--danger: #ef4444;
+	--accent: #3b82f6; /* blue-500 for dark */
+	--toggle-bg: #1f2937; /* slightly lighter than dark card */
+	--toggle-hover: #374151;
+}
+
+/* Basic reset and typography */
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	line-height: 1.5;
+	color: var(--text);
+	background: var(--bg);
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Smooth theme transitions for common UI elements */
+:where(.heading,
+.heading *,
+.main,
+.bill,
+.plates,
+.plates *,
+.special,
+.special *,
+.result,
+.result *,
+.foot,
+table,
+thead th,
+th,
+td,
+tbody tr,
+input,
+button,
+label,
+small,
+.special-index) {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+a { color: inherit; }
+
+/* Layout */
+.heading {
+	background: var(--card-bg);
+	border-bottom: 1px solid var(--border);
+	padding: 1.25rem 1rem;
+	display: flex;
+	align-items: center; /* center button relative to text group */
+	justify-content: space-between; /* text group left, toggle right */
+}
+
+.heading-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.heading h1 {
+	margin: 0 0 0.25rem 0;
+	font-size: 1.5rem;
+}
+
+.heading p {
+	margin: 0;
+	color: var(--muted);
+}
+
+.main {
+	max-width: 960px;
+	margin: 1rem auto 2rem auto;
+	padding: 0 1rem;
+	flex: 1 0 auto; /* grow to push footer to bottom */
+}
+
+/* Card-like sections */
+.bill, .plates, .special, .result .output {
+	background: var(--card-bg);
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+	transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+/* Result controls and filter panel */
+.result-controls {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.filter-panel {
+	background: var(--card-bg);
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	padding: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.filter-row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.filter-row label {
+	min-width: 2.5rem;
+	color: var(--table-header-text);
+}
+
+.filter-row input[type="number"] {
+	width: 90px;
+}
+
+.filter-row select {
+	width: 110px;
+	padding: 0.5rem 0.6rem;
+	border: 1px solid var(--border);
+	border-radius: 0.375rem;
+	background: var(--input-bg);
+	color: var(--text);
+}
+
+.filter-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+/* Special items section */
+.special-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem 1rem;
+}
+
+.special-header b {
+	margin-right: auto;
+}
+
+.special-header #special-summary {
+	color: var(--muted);
+}
+
+.special-item {
+	display: grid;
+	grid-template-columns: 40px 3rem 100px 3rem 100px max-content; /* fixed index width; aligned labels/inputs; compact button column */
+	align-items: center;
+	column-gap: 0.5rem;
+	row-gap: 0.1rem; /* tighter vertical spacing */
+	padding: 0.1rem 0; /* reduce vertical padding */
+}
+
+.special-index {
+	font-weight: 600;
+	color: var(--table-header-text);
+}
+
+.special-item input[type="number"] {
+	width: 100px;
+}
+
+/* Global remove button style (used in special and filter panels) */
+button.remove-special {
+	background: var(--danger);
+	color: #fff;
+	border: none;
+	border-radius: 0.375rem;
+	padding: 0.35rem 0.6rem;
+	cursor: pointer;
+}
+
+/* Ensure consistent label width within special items */
+.special-item label {
+	min-width: 3rem;
+}
+
+/* Fix index column width so following content starts at the same position */
+.special-index {
+	width: 40px;
+}
+
+/* Keep the delete button compact and right-aligned within the last column */
+.special-item button.remove-special {
+	justify-self: end;
+}
+
+/* Form controls */
+label {
+	margin-right: 0.5rem;
+}
+
+input[type="number"] {
+	width: 160px;
+	padding: 0.5rem 0.6rem;
+	border: 1px solid var(--border);
+	border-radius: 0.375rem; /* 6px */
+	outline: none;
+	transition: border-color 0.2s, box-shadow 0.2s;
+	background: var(--input-bg);
+	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+input[type="number"]:focus {
+	border-color: var(--primary);
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.bill span {
+	margin: 0 0.25rem;
+}
+
+.bill b {
+	display: inline-block;
+	min-width: 10em;
+}
+
+.bill br {
+	content: "";
+	display: block;
+	margin: 0.5rem 0;
+}
+
+/* Checkbox group */
+.plates {
+	display: flex;
+	align-items: center; /* vertically center button relative to tiles */
+	justify-content: space-between; /* group on left, button on right */
+	gap: 1rem;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+
+.plates .ordinary {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	align-items: center;
+	flex: 1 1 auto; /* take the remaining width so the button sits at the right */
+}
+
+/* Each plate option arranged vertically: text on top, checkbox at bottom */
+.plates .ordinary > div {
+	display: flex;
+	flex-direction: column-reverse; /* input then label in DOM -> label displays on top */
+	align-items: center;
+	justify-content: center;
+	padding: 0.25rem 0.5rem;
+}
+/* Calculate button on the right, a bit slimmer */
+.plates > .btn-primary {
+	align-self: center; /* follow container's centering */
+	padding: 0.45rem 0.8rem; /* slimmer */
+	border-radius: 0.375rem;
+}
+
+.plates .ordinary > div label {
+	margin: 0 0 0.25rem 0; /* override generic label margin */
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+}
+
+/* Theme-colored checkboxes */
+.plates input[type="checkbox"] {
+	transform: translateY(0);
+	width: 20px;
+	height: 20px;
+	accent-color: var(--accent);
+	cursor: pointer;
+}
+
+/* Primary button */
+.btn-primary {
+	display: inline-block;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.6rem 1rem;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.05s ease-in-out;
+}
+
+.btn-primary:hover {
+	background: var(--primary-hover);
+}
+
+.btn-primary:active {
+	transform: translateY(1px);
+}
+
+/* Icon styling for material symbols inside buttons */
+.btn-primary .material-symbols-outlined {
+	font-size: 20px;
+	line-height: 1;
+	vertical-align: middle;
+	margin-right: 6px;
+}
+
+.remove-special .material-symbols-outlined {
+	font-size: 18px;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+/* Table */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+thead th {
+	background: var(--table-header-bg);
+	color: var(--table-header-text);
+	font-weight: 600;
+	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+th, td {
+	border: 1px solid var(--border);
+	padding: 0.5rem;
+	text-align: center;
+	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+tbody tr:nth-child(odd) {
+	background: var(--zebra);
+}
+
+/* Utility for messages inside the table */
+.result .output td[colspan] {
+	text-align: center;
+	color: var(--muted);
+	padding: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+	.bill b {
+		display: block;
+		margin-bottom: 0.25rem;
+		min-width: 0;
+	}
+
+	input[type="number"] {
+		width: 100%;
+	}
+
+	.plates .ordinary {
+		gap: 0.5rem;
+	}
+
+	.plates {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.plates .ordinary > div {
+		flex: 1 1 45%; /* 2 per row on small screens */
+	}
+
+	.plates > .btn-primary {
+		align-self: flex-end; /* keep at right on mobile */
+		margin-top: 0.25rem;
+	}
+}
+
+/* Footer matches header */
+.foot {
+	background: var(--card-bg);
+	border-top: 1px solid var(--border);
+	padding: 1rem;
+	color: var(--muted);
+	text-align: center;
+	transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Neutral circular theme toggle */
+#theme-toggle {
+	width: 40px;
+	height: 40px;
+	border-radius: 9999px;
+	background: var(--toggle-bg);
+	border: none;
+	color: var(--text);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background-color 200ms ease, color 200ms ease, transform 100ms ease;
+}
+
+#theme-toggle:hover { background: var(--toggle-hover); }
+#theme-toggle:active { transform: translateY(1px); }
+
+/* Dark mode: readable inputs */
+body.dark input[type="number"] { color: var(--text); caret-color: var(--text); }
+body.dark input[type="number"]::placeholder { color: var(--muted); }
+
+/* Wider screens: make options denser */
+@media (min-width: 641px) {
+	.plates .ordinary > div {
+		flex: 0 1 120px; /* consistent small tiles in a row */
+	}
+}
