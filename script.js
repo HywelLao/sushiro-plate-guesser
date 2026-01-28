@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         indexBadge.textContent = `#${(specialList.querySelectorAll('.special-item').length + 1)}`;
 
         const qtyLabel = document.createElement('label');
-        qtyLabel.textContent = '數量';
+        qtyLabel.innerHTML = '<b>數量</b>';
         const qtyInput = document.createElement('input');
         qtyInput.type = 'number';
         qtyInput.min = '0';
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         qtyInput.className = 'special-qty';
 
         const priceLabel = document.createElement('label');
-        priceLabel.textContent = '價格';
+        priceLabel.innerHTML = '<b>價格</b> <span>$</span>';
         const priceInput = document.createElement('input');
         priceInput.type = 'number';
         priceInput.min = '0';
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const cell = row.insertCell(0);
             const colSpanCount = (combinationHeaderVisible ? 1 : 0) + visiblePlatesOrder.length;
             cell.colSpan = Math.max(colSpanCount, 1);
-            cell.textContent = "特別項目總額 >= 總數，無剩餘金額可計算";
+            cell.textContent = "特別項目總額 ≥ 總數，無剩餘金額可計算";
             return;
         }
 
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-        combinationHeader.textContent = `組合 (${finalCombinations.length})`;
+        combinationHeader.textContent = `組合（${finalCombinations.length}）`;
 
         for (let i = 0; i < finalCombinations.length; i++) {
             const row = resultTable.insertRow();

@@ -15,9 +15,12 @@
             <h1>壽司郎：估下食咗幾多錢</h1>
             <p>估下你個 friend 唔同顏色既碟分別食咗幾多。</p>
         </div>
-        <button id="theme-toggle" aria-label="切換深色/淺色模式">
-            <span class="material-symbols-outlined">dark_mode</span>
-        </button>
+        <div class="heading-actions">
+            <button id="theme-toggle" aria-label="切換深色/淺色模式">
+                <span class="material-symbols-outlined">dark_mode</span>
+            </button>
+            <div class="avatar"></div>
+        </div>
     </div>
 
     <div class="main">
@@ -97,10 +100,675 @@
             </div>
         </div>
 
+        <div class="exercise">
+            <h2>練習題</h2>
+            <p>小明去咗食壽司郎。已知：</p>
+            <ol>
+                <li>佢只係食咗紅、銀、金同黑碟。</li>
+                <li>如果佢食多任意一碟紅、銀、金或黑碟，加一後取整數就啱啱好變 $400。</li>
+                <li>加一後，帳單既十位數字為「8」。</li>
+                <li>小明食紅、銀、金同黑碟數量互不相等。</li>
+                <li>小明冇一隻碟係食超過 9 碟。</li>
+                <li>就算小明唔食金碟，加一後，帳單既百位數字都唔會變。黑碟都係同樣道理。</li>
+            </ol>
+            <p>試根據以上條件，推算小明紅、銀、金同黑碟各自食咗幾碟。</p>
+            <summary>
+                <details>
+                    <summary>答案（附詳解）</summary>
+                    <span>
+                        首先，根據條件 2，我哋可以計返小明如果食多碟，加一後食咗幾多錢：
+                        <br>
+                        = $(400 ÷ 1.1)
+                        <br>
+                        ≈ $363.64
+                        <br>
+                        = $364（取至最接近整數） 
+                        <br>
+                        我哋可以藉此計返加一後既帳單嚟驗算：
+                        <br>
+                        = $364 × 1.1
+                        <br>
+                        = $400.4
+                        <br>
+                        = $400（取至最接近整數） 
+                        <br>
+                        啱數！
+                        <br>
+                        跟住，我哋可以根據條件 3，估返加一前既帳單應該係幾多。
+                        <br>
+                        如果加一後，帳單既十位數字係「8」，即係話加一後帳單可以係喺 $380 至 $389 之間。
+                        <br>
+                        計返加一前既帳單：
+                        <ul>
+                            <li>$(380 ÷ 1.1) ≈ $345.46 → $345（取至最接近整數）</li>
+                            <li>$(381 ÷ 1.1) ≈ $346.36 → $346（取至最接近整數）</li>
+                            <li>$(382 ÷ 1.1) ≈ $347.27 → $347（取至最接近整數）</li>
+                            <li>$(383 ÷ 1.1) ≈ $348.18 → $348（取至最接近整數）</li>
+                            <li>$(384 ÷ 1.1) ≈ $349.09 → $349（取至最接近整數）</li>
+                            <li>$(385 ÷ 1.1) = $350</li>
+                            <li>$(386 ÷ 1.1) ≈ $350.91 → $351（取至最接近整數）</li>
+                            <li>$(387 ÷ 1.1) ≈ $351.82 → $352（取至最接近整數）</li>
+                            <li>$(388 ÷ 1.1) ≈ $352.73 → $353（取至最接近整數）</li>
+                            <li>$(389 ÷ 1.1) ≈ $353.64 → $354（取至最接近整數）</li>
+                        </ul>
+                        而佢嗌多一碟後係 $364。假設：
+                        <ul>
+                            <li>佢嗌多一碟紅碟，咁佢加一前既帳單就應該係 $364 – $12 = $352。</li>
+                            <li>佢嗌多一碟銀碟，咁佢加一前既帳單就應該係 $364 – $17 = $347。</li>
+                            <li>佢嗌多一碟金碟，咁佢加一前既帳單就應該係 $364 – $22 = $342。（排除，已經唔符合條件）</li>
+                            <li>佢嗌多一碟黑碟，咁佢加一前既帳單就應該係 $364 – $27 = $337。（排除，已經唔符合條件）</li>
+                        </ul>
+                        換言之，佢加一前既帳單只有可能係 $347 或 $352。
+                        <br>
+                        我哋將 $347 同 $352 輸入到上面既計算工具（未收加一服務費總數嗰格），並根據條件 5 篩選結果（紅、銀、金、黑 ≤ 9），可以得到以下可能性：
+                        <br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">$347</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">組合（32）</th>
+                                    <th colspan="4">數量</th>
+                                </tr>
+                                <tr>
+                                    <th>紅（$12）</th>
+                                    <th>銀（$17）</th>
+                                    <th>金（$22）</th>
+                                    <th>黑（$27）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>4</td>
+                                    <td>9</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>5</td>
+                                    <td>7</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>7</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>1</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>3</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>1</td>
+                                    <td>4</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>2</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>7</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>9</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>7</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>2</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>17</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>18</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>19</td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>21</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>5</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>22</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>3</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>24</td>
+                                    <td>5</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>25</td>
+                                    <td>7</td>
+                                    <td>9</td>
+                                    <td>5</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>26</td>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>27</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>28</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>29</td>
+                                    <td>9</td>
+                                    <td>5</td>
+                                    <td>7</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>30</td>
+                                    <td>9</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>31</td>
+                                    <td>9</td>
+                                    <td>7</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>32</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>1</td>
+                                    <td>3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">$352</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">組合（32）</th>
+                                    <th colspan="4">數量</th>
+                                </tr>
+                                <tr>
+                                    <th>紅（$12）</th>
+                                    <th>銀（$17）</th>
+                                    <th>金（$22）</th>
+                                    <th>黑（$27）</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><td>1</td><td>0</td><td>4</td><td>8</td><td>4</td></tr><tr><td>2</td><td>0</td><td>5</td><td>6</td><td>5</td></tr><tr><td>3</td><td>0</td><td>6</td><td>4</td><td>6</td></tr><tr><td>4</td><td>0</td><td>7</td><td>2</td><td>7</td></tr><tr><td>5</td><td>0</td><td>8</td><td>0</td><td>8</td></tr><tr><td>6</td><td>1</td><td>2</td><td>9</td><td>4</td></tr><tr><td>7</td><td>1</td><td>3</td><td>7</td><td>5</td></tr><tr><td>8</td><td>1</td><td>4</td><td>5</td><td>6</td></tr><tr><td>9</td><td>1</td><td>5</td><td>3</td><td>7</td></tr><tr><td>10</td><td>1</td><td>6</td><td>1</td><td>8</td></tr><tr><td>11</td><td>2</td><td>1</td><td>8</td><td>5</td></tr><tr><td>12</td><td>2</td><td>2</td><td>6</td><td>6</td></tr><tr><td>13</td><td>2</td><td>3</td><td>4</td><td>7</td></tr><tr><td>14</td><td>2</td><td>4</td><td>2</td><td>8</td></tr><tr><td>15</td><td>2</td><td>5</td><td>0</td><td>9</td></tr><tr><td>16</td><td>3</td><td>0</td><td>7</td><td>6</td></tr><tr><td>17</td><td>3</td><td>1</td><td>5</td><td>7</td></tr><tr><td>18</td><td>3</td><td>2</td><td>3</td><td>8</td></tr><tr><td>19</td><td>3</td><td>3</td><td>1</td><td>9</td></tr><tr><td>20</td><td>4</td><td>0</td><td>4</td><td>8</td></tr><tr><td>21</td><td>4</td><td>1</td><td>2</td><td>9</td></tr><tr><td>22</td><td>7</td><td>8</td><td>6</td><td>0</td></tr><tr><td>23</td><td>7</td><td>9</td><td>4</td><td>1</td></tr><tr><td>24</td><td>8</td><td>6</td><td>7</td><td>0</td></tr><tr><td>25</td><td>8</td><td>7</td><td>5</td><td>1</td></tr><tr><td>26</td><td>8</td><td>8</td><td>3</td><td>2</td></tr><tr><td>27</td><td>8</td><td>9</td><td>1</td><td>3</td></tr><tr><td>28</td><td>9</td><td>4</td><td>8</td><td>0</td></tr><tr><td>29</td><td>9</td><td>5</td><td>6</td><td>1</td></tr><tr><td>30</td><td>9</td><td>6</td><td>4</td><td>2</td></tr><tr><td>31</td><td>9</td><td>7</td><td>2</td><td>3</td></tr><tr><td>32</td><td>9</td><td>8</td><td>0</td><td>4</td></tr></tbody>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>4</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>9</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>1</td>
+                                    <td>3</td>
+                                    <td>7</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>1</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td>3</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>8</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>6</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>2</td>
+                                    <td>5</td>
+                                    <td>0</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>7</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>17</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>18</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>19</td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>4</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>21</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>22</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>6</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>7</td>
+                                    <td>9</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>24</td>
+                                    <td>8</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>25</td>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>26</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>27</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>1</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>28</td>
+                                    <td>9</td>
+                                    <td>4</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>29</td>
+                                    <td>9</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>30</td>
+                                    <td>9</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>31</td>
+                                    <td>9</td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>32</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                    <td>4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        再根據條件 6，我哋可以推算到小明金碟同黑碟既範圍：
+                        <br>
+                        金碟：
+                        <br>
+                        (347 – 22<i>g</i>) × 1.1 ≥ 300
+                        <br>
+                        347 – 22<i>g</i> ≥ 272.727...
+                        <br>
+                        –22<i>g</i> ≥ –74.273...
+                        <br>
+                        <i>g</i> ≤ 3.376... ≤ 3
+                        <br>
+                        黑碟：
+                        <br>
+                        (347 – 27<i>b</i>) × 1.1 ≥ 300
+                        <br>
+                        347 – 27<i>b</i> ≥ 272.727...
+                        <br>
+                        –27<i>b</i> ≥ –74.273...
+                        <br>
+                        <i>b</i> ≤ 2.748... ≤ 2
+                        <br>
+                        同理，對 $352 亦然：
+                        <br>
+                        金碟：
+                        <br>
+                        (352 – 22<i>g</i>) × 1.1 ≥ 300
+                        <br>
+                        352 – 22<i>g</i> ≥ 272.727...
+                        <br>
+                        –22<i>g</i> ≥ –79.273...
+                        <br>
+                        <i>g</i> ≤ 3.603... ≤ 3
+                        <br>
+                        黑碟：
+                        <br>
+                        (352 – 27<i>b</i>) × 1.1 ≥ 300
+                        <br>
+                        352 – 27<i>b</i> ≥ 272.727...
+                        <br>
+                        –27<i>b</i> ≥ –79.273...
+                        <br>
+                        <i>b</i> ≤ 2.937... ≤ 2
+                        <br>
+                        我哋將範圍縮窄，篩選結果（紅、銀 ≤ 9；金 ≤ 3；黑 ≤ 2）：
+                        <br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">$347</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">組合（2）</th>
+                                    <th colspan="4">數量</th>
+                                </tr>
+                                <tr>
+                                    <th>紅（$12）</th>
+                                    <th>銀（$17）</th>
+                                    <th>金（$22）</th>
+                                    <th>黑（$27）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>9</td>
+                                    <td>7</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">$347</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">組合（1）</th>
+                                    <th colspan="4">數量</th>
+                                </tr>
+                                <tr>
+                                    <th>紅（$12）</th>
+                                    <th>銀（$17）</th>
+                                    <th>金（$22）</th>
+                                    <th>黑（$27）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        配合條件 4，可以得出答案：
+                        <br>
+                        <b>紅：9；銀：7；金：3；黑：2</b>
+                    </span>
+                </details>
+            </summary>
+        </div>
     </div>
 
     <div class="foot">
-        商標版權歸香港壽司郎所有。本工具僅供娛樂用途，與壽司郎無任何關係。最後更新：2026-01-28
+        HL 製作。商標及版權歸香港壽司郎所有。本工具僅供娛樂用途，與壽司郎無任何關係。最後更新：2026-01-29。
     </div>
 </body>
 </html>

@@ -15,6 +15,7 @@
 	--accent: #2563eb; /* checkbox color */
 	--toggle-bg: #e5e7eb; /* slightly darker than light card */
 	--toggle-hover: #d1d5db;
+    --btn-h: 40px; /* unified button height */
 }
 
 body.dark {
@@ -82,6 +83,24 @@ small,
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
 }
 
+/* Details/Summary: pointer cursor and smooth open/close */
+details > summary {
+	cursor: pointer;
+}
+
+/* Animate the content part (everything except the summary) */
+details > *:not(summary) {
+	overflow: hidden;
+	max-height: 0;
+	opacity: 0;
+	transition: max-height 200ms ease, opacity 200ms ease;
+}
+
+details[open] > *:not(summary) {
+	max-height: 1000px; /* large enough to reveal content */
+	opacity: 1;
+}
+
 a { color: inherit; }
 
 /* Layout */
@@ -91,7 +110,31 @@ a { color: inherit; }
 	padding: 1.25rem 1rem;
 	display: flex;
 	align-items: center; /* center button relative to text group */
-	justify-content: space-between; /* text group left, toggle right */
+	justify-content: space-between; /* text group left, actions right */
+}
+.heading-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+/* Circular avatar placeholder (pfp) */
+.avatar {
+	width: var(--btn-h);
+	height: var(--btn-h);
+	border-radius: 9999px;
+	border: 1px solid var(--border);
+	background: url('src/avatar.JPG') no-repeat center center;
+    background-size: cover;
+	overflow: hidden; /* ensure image is clipped to circle */
+}
+
+.avatar img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
 }
 
 .heading-text {
@@ -112,13 +155,13 @@ a { color: inherit; }
 
 .main {
 	max-width: 960px;
-	margin: 1rem auto 2rem auto;
+	margin: 1rem auto 1rem auto;
 	padding: 0 1rem;
 	flex: 1 0 auto; /* grow to push footer to bottom */
 }
 
 /* Card-like sections */
-.bill, .plates, .special, .result .output {
+.bill, .plates, .special, .result .output, .exercise {
 	background: var(--card-bg);
 	border: 1px solid var(--border);
 	border-radius: 0.5rem;
@@ -126,6 +169,17 @@ a { color: inherit; }
 	margin-bottom: 1rem;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 	transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+/* Exercise section */
+
+.exercise {
+    margin-bottom: 0;
+}
+
+.exercise h2 {
+    font-size: 1.25rem;
+    color: var(--table-header-text);
 }
 
 /* Result controls and filter panel */
@@ -210,11 +264,15 @@ a { color: inherit; }
 
 /* Global remove button style (used in special and filter panels) */
 button.remove-special {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	background: var(--danger);
 	color: #fff;
-	border: none;
+	border: 1px solid transparent; /* match input border height */
 	border-radius: 0.375rem;
-	padding: 0.35rem 0.6rem;
+	padding: 0.5rem 0.6rem; /* same as inputs */
+	line-height: 1; /* match input text box metrics */
 	cursor: pointer;
 }
 
@@ -266,7 +324,13 @@ input[type="number"]:focus {
 .bill br {
 	content: "";
 	display: block;
-	margin: 0.5rem 0;
+	margin: 1rem 0; /* increased gap between before/after service fee */
+}
+
+/* Ensure spacing applies even if margin on <br> is ignored by some browsers */
+.bill br + b {
+	display: inline-block;
+	margin-top: 1rem;
 }
 
 /* Checkbox group */
@@ -298,7 +362,7 @@ input[type="number"]:focus {
 /* Calculate button on the right, a bit slimmer */
 .plates > .btn-primary {
 	align-self: center; /* follow container's centering */
-	padding: 0.45rem 0.8rem; /* slimmer */
+	padding: 0.5rem 0.6rem; /* match special-item input height */
 	border-radius: 0.375rem;
 }
 
@@ -319,12 +383,15 @@ input[type="number"]:focus {
 
 /* Primary button */
 .btn-primary {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	background: var(--primary);
 	color: white;
-	border: none;
+	border: 1px solid transparent; /* match input border height */
 	border-radius: 0.5rem;
-	padding: 0.6rem 1rem;
+	padding: 0.5rem 0.6rem; /* same as inputs */
+	line-height: 1; /* match input text box metrics */
 	font-size: 1rem;
 	cursor: pointer;
 	transition: background-color 0.2s, transform 0.05s ease-in-out;
@@ -427,8 +494,8 @@ tbody tr:nth-child(odd) {
 
 /* Neutral circular theme toggle */
 #theme-toggle {
-	width: 40px;
-	height: 40px;
+	width: var(--btn-h);
+	height: var(--btn-h);
 	border-radius: 9999px;
 	background: var(--toggle-bg);
 	border: none;
